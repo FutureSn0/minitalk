@@ -3,35 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:27:01 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/08 16:08:58 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/10 19:57:32 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	bin_2_ascii(int bin)
+void	bin_2_ascii(int bit)
 {
+	static int		i;
+	static char		c;
 
+	i = 0;
+	c = 0;
+	c = (c << 1) | bit;
+	i++;
+	if (i == 8)
+	{
+		ft_printf("%c", c);
+		i = 0;
+		c = 0;
+	}
 }
 
 void	sig_handler(int signum)
 {
 	if (signum == SIGUSR1)
+		bin_2_ascii(1);
 	else if (signum == SIGUSR2)
+		bin_2_ascii(0);
 }
 
 int	main(void)
 {
-	struct sigaction	sa;
-	
 	ft_printf("Server PID: %d\n", getpid());
-	
-	/*sa.sa_handler = sig_handler;*/
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
-	
+	signal(SIGUSR1, sig_handler);
+	signal(SIGUSR2, sig_handler);
+	while (1)
+		pause();
 	return (0);
 }

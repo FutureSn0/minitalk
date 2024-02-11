@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:35:20 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/08 15:43:49 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/10 19:57:50 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@
 
 void	ascii_2_bin(const char *str, int pid);
 void	send_bin(int bit, int pid);
+void	sig_handler(int signum);
+void		bin_2_ascii(int bin);
 
 #endif

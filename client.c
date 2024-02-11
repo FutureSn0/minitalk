@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:05:52 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/08 15:42:11 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/10 20:00:56 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	send_bin(int bit, int pid)
 
 void	ascii_2_bin(const char *str, int pid)
 {
-	int	i;
-	int	j;
-	int	len;
-	int	res;
+	int				i;
+	int				j;
+	int				len;
+	int				res;
 	unsigned char	c;
 
 	len = ft_strlen(str);
@@ -44,9 +44,9 @@ void	ascii_2_bin(const char *str, int pid)
 	}
 }
 
-int        main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	pid_t   pid;
+	pid_t	pid;
 
 	if (argc != 3 || !argv[2])
 		return (-1);
