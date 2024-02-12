@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:05:52 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/10 20:00:56 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/12 13:29:10 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ascii_2_bin(const char *str, int pid)
 	int				i;
 	int				j;
 	int				len;
-	int				res;
 	unsigned char	c;
 
 	len = ft_strlen(str);
@@ -37,7 +36,7 @@ void	ascii_2_bin(const char *str, int pid)
 		while (j >= 0)
 		{
 			send_bin((c >> j) & 1, pid);
-			usleep(100);
+			usleep(300);
 			j--;
 		}
 		i++;
