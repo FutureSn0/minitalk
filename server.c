@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:27:01 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/12 13:20:22 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/13 15:14:54 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	bin_2_ascii(int bit)
 {
-	static int		i;
-	static char		c;
+	static int					i = 0;
+	static unsigned char		c = 0;
 
-	i = 0;
-	c = 0;
 	c = (c << 1) | bit;
 	i++;
 	if (i == 8)
