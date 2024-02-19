@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:05:52 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/19 13:02:37 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/19 13:33:57 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ int	main(int argc, char **argv)
 	}
 	signal(SIGUSR1, confirmation);
 	ascii_2_bin(argv[2], pid);
+	ft_printf("Message received\n");
 	return (0);
 }
