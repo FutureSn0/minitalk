@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:05:52 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/19 13:33:57 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/19 13:44:35 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	main(int argc, char **argv)
 {
 	pid_t	pid;
 
-	signal(SIGUSR2, confirmation);
 	if (argc != 3 || !argv[2])
 	{
 		ft_printf("Usage: %s <Server PID> <string>\n", argv[0]);
