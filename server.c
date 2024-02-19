@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:27:01 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/13 15:14:54 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:54:42 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,25 @@ void	bin_2_ascii(int bit)
 	}
 }
 
-void	sig_handler(int signum)
+void	sig_handler(int signum, siginfo_t *info, void *context)
 {
+	(void)context;
 	if (signum == SIGUSR1)
 		bin_2_ascii(1);
 	else if (signum == SIGUSR2)
 		bin_2_ascii(0);
+	kill(info->si_pid, SIGUSR1);
 }
 
 int	main(void)
 {
+	struct sigaction	sa;
+
 	ft_printf("Server PID: %d\n", getpid());
-	signal(SIGUSR1, sig_handler);
-	signal(SIGUSR2, sig_handler);
+	sa.sa_sigaction = sig_handler;
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		pause();
 	return (0);

@@ -3,20 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:05:52 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/13 14:23:37 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:54:40 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+int	g_confirm = 0;
+
+void	confirmation(int signum)
+{
+	(void)signum;
+	g_confirm = 1;
+}
+
 void	send_bin(int bit, int pid)
 {
 	if (bit == 1)
 	{
-		kill(pid, SIGUSR1);
 		if (kill (pid, SIGUSR1) == -1)
 		{
 			ft_printf("Error\n");
@@ -25,13 +32,16 @@ void	send_bin(int bit, int pid)
 	}
 	else
 	{
-		kill(pid, SIGUSR2);
 		if (kill (pid, SIGUSR2) == -1)
 		{
 			ft_printf("Error\n");
 			exit(EXIT_FAILURE);
 		}
 	}
+	usleep(400);
+	while (!g_confirm)
+		pause();
+	g_confirm = 0;
 }
 
 void	ascii_2_bin(const char *str, int pid)
@@ -50,7 +60,7 @@ void	ascii_2_bin(const char *str, int pid)
 		while (j >= 0)
 		{
 			send_bin((c >> j) & 1, pid);
-			usleep(200);
+			usleep(800);
 			j--;
 		}
 		i++;
@@ -61,6 +71,7 @@ int	main(int argc, char **argv)
 {
 	pid_t	pid;
 
+	signal(SIGUSR2, confirmation);
 	if (argc != 3 || !argv[2])
 	{
 		ft_printf("Usage: %s <Server PID> <string>\n", argv[0]);
@@ -72,6 +83,7 @@ int	main(int argc, char **argv)
 		ft_printf("Invalid PID\n");
 		exit(EXIT_FAILURE);
 	}
+	signal(SIGUSR1, confirmation);
 	ascii_2_bin(argv[2], pid);
 	return (0);
 }
