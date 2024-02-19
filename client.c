@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:05:52 by aapryce           #+#    #+#             */
-/*   Updated: 2024/02/16 16:54:40 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/02/19 13:02:37 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	send_bin(int bit, int pid)
 			exit(EXIT_FAILURE);
 		}
 	}
-	usleep(400);
 	while (!g_confirm)
 		pause();
 	g_confirm = 0;
