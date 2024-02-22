@@ -59,7 +59,6 @@ void	ascii_2_bin(const char *str, int pid)
 		while (j >= 0)
 		{
 			send_bin((c >> j) & 1, pid);
-			usleep(800);
 			j--;
 		}
 		i++;
